@@ -1,4 +1,5 @@
 using System;
+using Assets.Scripts;
 using UnityEngine;
 using UnityStandardAssets.CrossPlatformInput;
 using UnityStandardAssets.Utility;
@@ -41,7 +42,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
         private float m_NextStep;
         private bool m_Jumping;
         private AudioSource m_AudioSource;
-
+       
         // Use this for initialization
         private void Start()
         {
@@ -244,18 +245,27 @@ namespace UnityStandardAssets.Characters.FirstPerson
 
         private void OnControllerColliderHit(ControllerColliderHit hit)
         {
-            Rigidbody body = hit.collider.attachedRigidbody;
-            //dont move the rigidbody if the character is on top of it
-            if (m_CollisionFlags == CollisionFlags.Below)
+            if (hit.collider.gameObject.tag == "Bubble")
             {
-                return;
+                UIManager.Instance.SetStatus("Dead");
+               // Destroy(hit.collider.gameObject);
             }
+            else
+            {
+                Rigidbody body = hit.collider.attachedRigidbody;
+                //dont move the rigidbody if the character is on top of it
+                if (m_CollisionFlags == CollisionFlags.Below)
+                {
+                    return;
+                }
 
-            if (body == null || body.isKinematic)
-            {
-                return;
+                if (body == null || body.isKinematic)
+                {
+                    return;
+                }
+                body.AddForceAtPosition(m_CharacterController.velocity * 0.1f, hit.point, ForceMode.Impulse);
             }
-            body.AddForceAtPosition(m_CharacterController.velocity*0.1f, hit.point, ForceMode.Impulse);
+           
         }
     }
 }
