@@ -32,7 +32,7 @@ namespace Assets.Scripts
         
             lineRenderer.enabled = true;
 
-            lineRenderer.numPositions = 2;
+            lineRenderer.positionCount = 2;
             lineRenderer.SetPosition(0,transform.position);
        
             lineRenderer.SetPosition(1,Roof.position);
