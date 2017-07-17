@@ -1,5 +1,6 @@
 using System;
 using Assets.Scripts;
+using Assets.Standard_Assets.Characters.FirstPersonCharacter.Scripts;
 using UnityEngine;
 using UnityStandardAssets.CrossPlatformInput;
 using UnityStandardAssets.Utility;
@@ -215,7 +216,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
             // On standalone builds, walk/run speed is modified by a key press.
             // keep track of whether or not the character is walking or running
             //m_IsWalking = !Input.GetKey(KeyCode.LeftShift); //Esto puede ser para un powerUp
-            m_IsWalking = true;
+            m_IsWalking = !PowerUpsManager.Instance.CanRun;
 #endif
             // set the desired speed to be walking or running
             speed = m_IsWalking ? m_WalkSpeed : m_RunSpeed;
@@ -247,7 +248,15 @@ namespace UnityStandardAssets.Characters.FirstPerson
         {
             if (hit.collider.gameObject.tag == "Bubble")
             {
-                UIManager.Instance.SetStatus("Dead");
+                if (PowerUpsManager.Instance.HasInmunity)
+                {
+                    PowerUpsManager.Instance.HasInmunity = false;
+                }
+                else
+                {
+                    UIManager.Instance.SetStatus("Dead");
+                }
+               
                // Destroy(hit.collider.gameObject);
             }
             else

@@ -9,7 +9,7 @@ namespace Assets.Scripts
             
             if (other.gameObject.tag == "Bubble")
             {
-                UIManager.Instance.SetScore(1);
+                UIManager.Instance.IncreaseScore(1);
                 Destroy(other.gameObject);
             }
         }

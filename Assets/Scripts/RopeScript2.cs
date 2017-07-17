@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using Assets.Standard_Assets.Characters.FirstPersonCharacter.Scripts;
 using UnityEditor;
 using UnityEngine;
 
@@ -12,6 +13,7 @@ namespace Assets.Scripts
         private LineRenderer lineRenderer;
         public Transform Roof;
         public float DestroyTimer = 1f;
+        public float BetterHarponDestroyTimer = 5f;
         GameObject lineCollider;
 
         public float LineWidth; 
@@ -65,7 +67,7 @@ namespace Assets.Scripts
             
 
             rope = true;
-            StartCoroutine(DestroyRope(DestroyTimer));
+            StartCoroutine(DestroyRope(PowerUpsManager.Instance.HasBetterHarpon ? BetterHarponDestroyTimer : DestroyTimer));
         }
 
     
