@@ -42,7 +42,7 @@ namespace Assets.Scripts
         
             lineRenderer.enabled = true;
 
-            lineRenderer.positionCount = 2;
+            lineRenderer.numPositions = 2;
             lineRenderer.widthMultiplier = 0.2f;
             var startPosition = transform.position;
             startPosition.y = 0;
@@ -55,7 +55,7 @@ namespace Assets.Scripts
 
             var capsuleCollider = lineCollider.AddComponent<CapsuleCollider>();
             capsuleCollider.isTrigger = true;
-            capsuleCollider.radius = LineWidth;
+            capsuleCollider.radius = LineWidth*2;
             capsuleCollider.center = Vector3.zero;
             capsuleCollider.direction = 2;
             capsuleCollider.transform.parent = lineRenderer.transform;
@@ -76,6 +76,8 @@ namespace Assets.Scripts
         void DoDestroyRope()
         {
             // Stop Rendering Rope then Destroy all of its components
+           
+
             rope = false;
             Destroy(lineCollider);
             lineRenderer.enabled = false;

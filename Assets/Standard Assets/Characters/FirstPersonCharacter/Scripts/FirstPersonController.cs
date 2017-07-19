@@ -255,6 +255,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
                 else
                 {
                     UIManager.Instance.SetStatus("Dead");
+                    PowerUpsManager.Instance.HasBetterHarpon = false;
                 }
                
                // Destroy(hit.collider.gameObject);

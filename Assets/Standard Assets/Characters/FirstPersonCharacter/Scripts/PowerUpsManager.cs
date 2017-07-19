@@ -1,5 +1,8 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace Assets.Standard_Assets.Characters.FirstPersonCharacter.Scripts
 {
@@ -63,16 +66,18 @@ namespace Assets.Standard_Assets.Characters.FirstPersonCharacter.Scripts
         // Update is called once per frame
         void Update ()
         {
-            //SpawnPowerUps();
+            SpawnPowerUps();
         }
 
         private void SpawnPowerUps()
         {
-            if (Random.Range(0, 9) >= 0.001)
+           
+            if (Random.Range(0, 1000) == 0)
             {
                 var powerUp = PowerUps[Random.Range(0, 3)];
                 var position = Floor.position;
-                position.x = Random.Range(-29, 29);
+                position.x = Random.Range(-25, 25);
+                position.y = 1;
                 Instantiate(powerUp,position,Quaternion.identity);
             }
         }

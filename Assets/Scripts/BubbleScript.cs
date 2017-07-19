@@ -17,8 +17,9 @@ namespace Assets.Scripts
         }
 
         // Use this for initialization
-        void Start () {
-
+        void Start ()
+        {
+            _rigidbody = gameObject.GetComponent<Rigidbody>();
         }
 	
         // Update is called once per frame
@@ -54,29 +55,34 @@ namespace Assets.Scripts
         {
             Direction = direction;
             Size = size;
-            
+            _rigidbody = GetComponent<Rigidbody>();
             int force;
+            gameObject.transform.localScale = new Vector3(size, size, size);
             switch (size)
             {
                 //Size L
                 case 3:
                     force = 15;
+                    gameObject.GetComponent<Renderer>().material.color = Color.blue;
                     break;
                 //Size M
                 case 2:
                     force = 20;
+                    gameObject.GetComponent<Renderer>().material.color = Color.red;
                     break;
                 //Size S
                 case 1:
                     force = 25;
+                    gameObject.GetComponent<Renderer>().material.color = Color.yellow;
                     break;
                 //Size XL
                 default:
                     force = 10;
+                    gameObject.GetComponent<Renderer>().material.color = Color.white;
                     break;
             }
 
-            _rigidbody = GetComponent<Rigidbody>();
+            
             _rigidbody.AddForce(direction * force, ForceMode.Impulse);
         }
     }
