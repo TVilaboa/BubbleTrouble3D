@@ -63,7 +63,7 @@ namespace Assets.Standard_Assets.Characters.FirstPersonCharacter.Scripts
         // Update is called once per frame
         void Update ()
         {
-            SpawnPowerUps();
+            //SpawnPowerUps();
         }
 
         private void SpawnPowerUps()

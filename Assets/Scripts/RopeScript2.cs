@@ -42,7 +42,7 @@ namespace Assets.Scripts
         
             lineRenderer.enabled = true;
 
-            lineRenderer.numPositions = 2;
+            lineRenderer.positionCount = 2;
             lineRenderer.widthMultiplier = 0.2f;
             var startPosition = transform.position;
             startPosition.y = 0;
@@ -52,6 +52,7 @@ namespace Assets.Scripts
             lineRenderer.SetPosition(1,targetPosition);
 
             lineCollider = new GameObject("LineCollider");
+            lineCollider.tag = "Rope";
             var capsuleCollider = lineCollider.AddComponent<CapsuleCollider>();
             capsuleCollider.isTrigger = true;
             capsuleCollider.radius = LineWidth;

@@ -10,12 +10,14 @@ namespace Assets.Scripts
         private Rigidbody _rigidbody;
         private bool _timeWasFreezed;
 
+        private void Awake()
+        {
+
+        }
 
         // Use this for initialization
         void Start () {
-            Direction = Vector3.left;
-            _rigidbody = GetComponent<Rigidbody>();
-            _rigidbody.AddForce(Direction * 10 , ForceMode.Impulse);
+
         }
 	
         // Update is called once per frame
@@ -45,18 +47,12 @@ namespace Assets.Scripts
 
         private void OnCollisionEnter(Collision collision)
         {
-            if (collision.gameObject.name == "Player") {
-                GameObject aux = Instantiate(gameObject, gameObject.transform.position, gameObject.transform.rotation) as GameObject;
-                aux.GetComponent<BubbleScript>().Direction = Vector3.right;
-                Destroy(gameObject);
-            }
-        
-        
         }
-
-        //Spawn two children of less size
-        private void spawnChildren() {
-
+        
+        public void Init(Vector3 direction)
+        {
+            _rigidbody = GetComponent<Rigidbody>();
+            _rigidbody.AddForce(direction * 10, ForceMode.Impulse);
         }
     }
 }
