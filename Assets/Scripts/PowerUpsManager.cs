@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-namespace Assets.Standard_Assets.Characters.FirstPersonCharacter.Scripts
+namespace Assets.Scripts
 {
     public class PowerUpsManager : MonoBehaviour
     {

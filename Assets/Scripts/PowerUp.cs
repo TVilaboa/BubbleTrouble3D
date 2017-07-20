@@ -1,5 +1,4 @@
-﻿using Assets.Standard_Assets.Characters.FirstPersonCharacter.Scripts;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Assets.Scripts
 {

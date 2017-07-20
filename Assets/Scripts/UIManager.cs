@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 using UnityEngine.UI;
 
 namespace Assets.Scripts
@@ -6,11 +7,18 @@ namespace Assets.Scripts
     public class UIManager : MonoBehaviour
     {
 
-        void Start()
+        void Awake()
         {
             if (instance == null)
             {
                 instance = this;
+                LevelText = GameObject.Find("LevelText").GetComponent<Text>();
+                WinText = GameObject.Find("WinText").GetComponent<Text>();
+                StatusText = GameObject.Find("StatusText").GetComponent<Text>();
+                SetStatus("Alive");
+                LivesText = GameObject.Find("LivesText").GetComponent<Text>();
+                
+                ScoreText = GameObject.Find("ScoreText").GetComponent<Text>();
             }
             
         }
@@ -55,12 +63,12 @@ namespace Assets.Scripts
     
         private void UpdateScoreText()
         {
-            ScoreText.text = score.ToString();
+            ScoreText.text = "Score: " + score;
         }
 
         public void SetStatus(string text)
         {
-            StatusText.text = text;
+            StatusText.text ="Status: " + text;
         }
 
         public void Win() {
@@ -72,9 +80,25 @@ namespace Assets.Scripts
             WinText.text = "Segui participando muñeco";
         }
 
-        public Text ScoreText, StatusText, WinText;
+        public Text ScoreText, StatusText, WinText,LevelText,LivesText;
 
 
+        public void DisplayLevel(int level)
+        {
+            LevelText.text = "Nivel " + level;
+            StartCoroutine(FadeLevelText(3));
+        }
 
+        IEnumerator FadeLevelText (float time)
+        {
+            yield return new WaitForSeconds(time);
+
+            LevelText.text = "";
+        }
+
+        public void UpdateLives(int lives)
+        {
+            LivesText.text = "Lives: " + lives;
+        }
     }
 }

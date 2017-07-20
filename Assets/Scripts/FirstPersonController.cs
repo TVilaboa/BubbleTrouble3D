@@ -1,12 +1,9 @@
-using System;
-using Assets.Scripts;
-using Assets.Standard_Assets.Characters.FirstPersonCharacter.Scripts;
 using UnityEngine;
 using UnityStandardAssets.CrossPlatformInput;
 using UnityStandardAssets.Utility;
 using Random = UnityEngine.Random;
 
-namespace UnityStandardAssets.Characters.FirstPerson
+namespace Assets.Scripts
 {
     [RequireComponent(typeof (CharacterController))]
     [RequireComponent(typeof (AudioSource))]
@@ -43,6 +40,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
         private float m_NextStep;
         private bool m_Jumping;
         private AudioSource m_AudioSource;
+        public int Lives = 3;
        
         // Use this for initialization
         private void Start()
@@ -57,6 +55,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
             m_Jumping = false;
             m_AudioSource = GetComponent<AudioSource>();
 			m_MouseLook.Init(transform , m_Camera.transform);
+           UIManager.Instance.UpdateLives(Lives);
         }
 
 
@@ -252,10 +251,16 @@ namespace UnityStandardAssets.Characters.FirstPerson
                 {
                     PowerUpsManager.Instance.HasInmunity = false;
                 }
+                else if (Lives > 0)
+                {
+                    Lives--;
+                    UIManager.Instance.UpdateLives(Lives);
+                    PowerUpsManager.Instance.HasBetterHarpon = false;
+                }
                 else
                 {
                     UIManager.Instance.SetStatus("Dead");
-                    PowerUpsManager.Instance.HasBetterHarpon = false;
+                   
                 }
                
                // Destroy(hit.collider.gameObject);

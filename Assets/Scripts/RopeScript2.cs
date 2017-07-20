@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using Assets.Standard_Assets.Characters.FirstPersonCharacter.Scripts;
 using UnityEngine;
 
 namespace Assets.Scripts
