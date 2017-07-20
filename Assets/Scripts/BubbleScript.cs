@@ -5,6 +5,7 @@ namespace Assets.Scripts
 {
     public class BubbleScript : MonoBehaviour {
         public Vector3 Direction;
+        public int Size;
         private Vector3? _freezedPosition= null;
         private Vector3? _freezedVelocity = null;
         private Rigidbody _rigidbody;
@@ -49,10 +50,34 @@ namespace Assets.Scripts
         {
         }
         
-        public void Init(Vector3 direction)
+        public void Init(Vector3 direction, int size)
         {
+            Direction = direction;
+            Size = size;
+            
+            int force;
+            switch (size)
+            {
+                //Size L
+                case 3:
+                    force = 15;
+                    break;
+                //Size M
+                case 2:
+                    force = 20;
+                    break;
+                //Size S
+                case 1:
+                    force = 25;
+                    break;
+                //Size XL
+                default:
+                    force = 10;
+                    break;
+            }
+
             _rigidbody = GetComponent<Rigidbody>();
-            _rigidbody.AddForce(direction * 10, ForceMode.Impulse);
+            _rigidbody.AddForce(direction * force, ForceMode.Impulse);
         }
     }
 }

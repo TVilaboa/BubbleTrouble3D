@@ -52,7 +52,7 @@ namespace Assets.Scripts
             lineRenderer.SetPosition(1,targetPosition);
 
             lineCollider = new GameObject("LineCollider");
-            lineCollider.tag = "Rope";
+
             var capsuleCollider = lineCollider.AddComponent<CapsuleCollider>();
             capsuleCollider.isTrigger = true;
             capsuleCollider.radius = LineWidth;
