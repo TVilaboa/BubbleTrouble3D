@@ -63,7 +63,16 @@ namespace Assets.Scripts
             StatusText.text = text;
         }
 
-        public Text ScoreText, StatusText;
+        public void Win() {
+            WinText.text = "Felicitaciones! Demostraste que somos malos diseñando niveles...";
+        }
+
+        public void Loose()
+        {
+            WinText.text = "Segui participando muñeco";
+        }
+
+        public Text ScoreText, StatusText, WinText;
 
 
 

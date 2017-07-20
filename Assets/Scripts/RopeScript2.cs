@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections;
 using Assets.Standard_Assets.Characters.FirstPersonCharacter.Scripts;
-using UnityEditor;
 using UnityEngine;
 
 namespace Assets.Scripts
