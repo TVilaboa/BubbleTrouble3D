@@ -41,10 +41,17 @@ namespace Assets.Scripts
         private bool m_Jumping;
         private AudioSource m_AudioSource;
         public int Lives = 3;
-       
-        // Use this for initialization
-        private void Start()
+
+        private AudioSource _audioSource;
+
+        private AudioClip LooseSound { get; set; }
+        private AudioClip HitSound { get; set; }
+
+        public void Start()
         {
+            _audioSource = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<AudioSource>();
+            LooseSound = (AudioClip)Resources.Load("Sounds/Loose");
+            HitSound = (AudioClip)Resources.Load("Sounds/Hit");
             m_CharacterController = GetComponent<CharacterController>();
             m_Camera = Camera.main;
             m_OriginalCameraPosition = m_Camera.transform.localPosition;
@@ -253,12 +260,19 @@ namespace Assets.Scripts
                 }
                 else if (Lives > 0)
                 {
+                    _audioSource.clip = HitSound;
+                    //_audioSource.time = 0.5f;
+                    _audioSource.Play();
+
                     Lives--;
                     UIManager.Instance.UpdateLives(Lives);
                     PowerUpsManager.Instance.HasBetterHarpon = false;
                 }
                 else
                 {
+                    _audioSource.clip = LooseSound;
+                    //_audioSource.time = 0.5f;
+                    _audioSource.Play();
                     UIManager.Instance.SetStatus("Dead");
                     UIManager.Instance.Loose();
                 }

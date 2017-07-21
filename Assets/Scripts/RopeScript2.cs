@@ -12,11 +12,16 @@ namespace Assets.Scripts
         public float BetterHarponDestroyTimer = 5f;
         GameObject lineCollider;
 
-        public float LineWidth; 
+        public float LineWidth;
+        private AudioSource _audioSource;
+        private AudioClip ShootSound { get; set; }
+        
 
-       // Use this for initialization
-        void Start ()
+        public void Start()
         {
+            _audioSource = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<AudioSource>();
+            ShootSound = (AudioClip)Resources.Load("Sounds/Shoot");
+           
             lineRenderer = gameObject.GetComponent<LineRenderer>();
             
         }
@@ -29,6 +34,9 @@ namespace Assets.Scripts
             //}
             if (!rope && Input.GetKeyDown("r"))
             {
+                _audioSource.clip = ShootSound;
+                //_audioSource.time = 0.5f;
+                _audioSource.Play();
                 BuildRope();
             }
         }
