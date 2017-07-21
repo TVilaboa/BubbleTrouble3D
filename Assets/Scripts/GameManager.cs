@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace Assets.Scripts
 {
@@ -6,6 +7,7 @@ namespace Assets.Scripts
 
         public GameObject sphere;
         private int Level;
+        public bool IsPlayerDead;
 
         // Use this for initialization
         void Start () {
@@ -13,8 +15,8 @@ namespace Assets.Scripts
             {
                 instance = this;
             }
-            Level = 1;
-            UIManager.Instance.DisplayLevel(Level);
+            Level = 0;
+            //UIManager.Instance.DisplayLevel(Level);
             //var direction = Random.Range(1, 2);
             //GameObject bubble = GameObject.FindGameObjectWithTag("Bubble");
             //if (direction == 1)
@@ -59,6 +61,11 @@ namespace Assets.Scripts
                 {
                     UIManager.Instance.Win();
                 }
+            }
+
+            if (IsPlayerDead && Input.GetKeyDown(KeyCode.Return))
+            {
+                SceneManager.LoadScene("BubbleTrouble");
             }
         }
 

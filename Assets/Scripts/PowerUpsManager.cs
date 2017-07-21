@@ -70,7 +70,7 @@ namespace Assets.Scripts
         private void SpawnPowerUps()
         {
            
-            if (Random.Range(0, 1000) == 0)
+            if (Random.Range(0, 750) == 0)
             {
                 var powerUp = PowerUps[Random.Range(0, 3)];
                 var position = Floor.position;

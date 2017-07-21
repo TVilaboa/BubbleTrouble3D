@@ -12,13 +12,13 @@ namespace Assets.Scripts
             if (instance == null)
             {
                 instance = this;
-                LevelText = GameObject.Find("LevelText").GetComponent<Text>();
-                WinText = GameObject.Find("WinText").GetComponent<Text>();
-                StatusText = GameObject.Find("StatusText").GetComponent<Text>();
+                //LevelText = GameObject.Find("LevelText").GetComponent<Text>();
+                //WinText = GameObject.Find("WinText").GetComponent<Text>();
+                //StatusText = GameObject.Find("StatusText").GetComponent<Text>();
                 SetStatus("Alive");
-                LivesText = GameObject.Find("LivesText").GetComponent<Text>();
+                //LivesText = GameObject.Find("LivesText").GetComponent<Text>();
                 
-                ScoreText = GameObject.Find("ScoreText").GetComponent<Text>();
+                //ScoreText = GameObject.Find("ScoreText").GetComponent<Text>();
             }
             
         }
@@ -77,7 +77,8 @@ namespace Assets.Scripts
 
         public void Loose()
         {
-            WinText.text = "Segui participando muñeco";
+            WinText.text = "Segui participando muñeco. Toca enter para volver a probar";
+            GameManager.Instance.IsPlayerDead = true;
         }
 
         public Text ScoreText, StatusText, WinText,LevelText,LivesText;

@@ -260,7 +260,7 @@ namespace Assets.Scripts
                 else
                 {
                     UIManager.Instance.SetStatus("Dead");
-                   
+                    UIManager.Instance.Loose();
                 }
                
                // Destroy(hit.collider.gameObject);
